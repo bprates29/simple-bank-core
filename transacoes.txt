@@ -1,0 +1,5 @@
+1;100.50;Pagamento de conta
+2;200.00;Depósito
+3;-50.75;Saque
+4;300.00;Transferência
+5;-150.00;Pagamento de fatura
