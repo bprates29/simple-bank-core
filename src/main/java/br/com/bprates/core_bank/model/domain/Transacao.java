@@ -4,7 +4,7 @@ public class Transacao {
     private Integer id;
     private Double valor;
     private String descricao;
-
+    private TipoTransacao tipo;
     private Conta conta;
 
     @Override
@@ -13,6 +13,8 @@ public class Transacao {
                 "id=" + id +
                 ", valor=" + valor +
                 ", descricao='" + descricao + '\'' +
+                ", tipo=" + tipo +
+                ", conta=" + (conta != null ? conta.getNumeroConta() : "sem conta") +
                 '}';
     }
 
@@ -38,6 +40,14 @@ public class Transacao {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public TipoTransacao getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoTransacao tipo) {
+        this.tipo = tipo;
     }
 
     public Conta getConta() {

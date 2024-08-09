@@ -1,12 +1,13 @@
 package br.com.bprates.core_bank.model.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente extends Pessoa {
     private String email;
     private Boolean isAtivo;
 
-    private List<Conta> contas;
+    private List<Conta> contas = new ArrayList<>();
 
     @Override
     public String toString() {

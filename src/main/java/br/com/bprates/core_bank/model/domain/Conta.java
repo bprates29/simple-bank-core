@@ -17,6 +17,8 @@ public class Conta {
                 "id=" + id +
                 ", saldo=" + saldo +
                 ", numeroConta='" + numeroConta + '\'' +
+                ", cliente=" + (cliente != null ? cliente.getNome() : "Sem cliente") +
+                ", transacoes=" + (transacoes != null ? transacoes.size() : 0)  +
                 '}';
     }
 

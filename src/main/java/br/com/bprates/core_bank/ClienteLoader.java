@@ -14,7 +14,7 @@ public class ClienteLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        String filePath = "cliente.txt";
+        String filePath = "files/cliente.txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;

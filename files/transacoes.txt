@@ -1,0 +1,5 @@
+1;100.50;Pagamento de conta;CREDITO;1
+2;200.00;Depósito;CREDITO;2
+3;-50.75;Saque;DEBITO;1
+4;300.00;Transferência;CREDITO;3
+5;-150.00;Pagamento de fatura;DEBITO;2
