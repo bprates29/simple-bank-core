@@ -1,6 +1,8 @@
 package br.com.bprates.core_bank;
 
 import br.com.bprates.core_bank.model.domain.Cliente;
+import br.com.bprates.core_bank.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -11,6 +13,9 @@ import java.io.IOException;
 
 @Component
 public class ClienteLoader implements ApplicationRunner {
+
+    @Autowired
+    private ClienteService clienteService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -27,6 +32,7 @@ public class ClienteLoader implements ApplicationRunner {
                 cliente.setEmail(values[2]);
                 cliente.setAtivo(Boolean.valueOf(values[3]));
 
+                clienteService.incluir(cliente);
                 System.out.println(cliente);
             }
         } catch (IOException e) {
