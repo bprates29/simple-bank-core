@@ -31,6 +31,7 @@ public class ClienteLoader implements ApplicationRunner {
                 cliente.setNome(values[1]);
                 cliente.setEmail(values[2]);
                 cliente.setAtivo(Boolean.valueOf(values[3]));
+                cliente.setCep(values[4]);
 
                 clienteService.incluir(cliente);
                 System.out.println(cliente);

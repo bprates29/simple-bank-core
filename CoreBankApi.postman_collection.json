@@ -97,6 +97,133 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Busca de Endereço pelo ID do cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clientes/endereco/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"endereco",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar clientes por nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clientes/buscar/nome?nome=João",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"buscar",
+								"nome"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "João"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar clientes ativos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clientes/ativos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"ativos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Incluir novo cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n           \"nome\": \"João Silva\",\n           \"email\": \"joao@exemplo.com\",\n           \"ativo\": true\n         }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clientes/incluir",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"incluir"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar cliente por ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n           \"nome\": \"João Silva Atualizado\",\n           \"email\": \"joao@exemplo.com\",\n           \"ativo\": true\n         }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clientes/atualizar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"atualizar",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -292,6 +419,113 @@
 								{
 									"key": "id",
 									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar transações ordenadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/transacoes/listar/order?ordenacao=valor&direcao=asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transacoes",
+								"listar",
+								"order"
+							],
+							"query": [
+								{
+									"key": "ordenacao",
+									"value": "valor"
+								},
+								{
+									"key": "direcao",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar transações por tipo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/transacoes/buscar/tipo?tipo=CREDITO",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transacoes",
+								"buscar",
+								"tipo"
+							],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "CREDITO"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar transações por ID da conta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/transacoes/buscar/conta/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transacoes",
+								"buscar",
+								"conta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar transações com valor maior que",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/transacoes/buscar/valor?valor=100.00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transacoes",
+								"buscar",
+								"valor"
+							],
+							"query": [
+								{
+									"key": "valor",
+									"value": "100.00"
 								}
 							]
 						}

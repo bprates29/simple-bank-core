@@ -1,29 +1,48 @@
 package br.com.bprates.core_bank.service;
 
 import br.com.bprates.core_bank.model.domain.Cliente;
+import br.com.bprates.core_bank.model.domain.Endereco;
+import br.com.bprates.core_bank.model.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @Service
 public class ClienteService {
-    private final Map<Integer, Cliente> clienteMap = new HashMap<>();
 
-    public void incluir(Cliente cliente) {
-        clienteMap.put(cliente.getId(), cliente);
-    }
+    @Autowired
+    private ClienteRepository clienteRepository;
 
-    public Collection<Cliente> obterLista() {
-        return clienteMap.values();
+    @Autowired
+    private EnderecoService enderecoService;
+
+    public List<Cliente> obterLista() {
+        return clienteRepository.findAll();
     }
 
     public Cliente obterPorId(Integer id) {
-        return clienteMap.get(id);
+        return clienteRepository.findById(id).orElse(null);
+    }
+
+    public List<Cliente> buscarPorNome(String nome) {
+        return clienteRepository.findByNomeContainingIgnoreCase(nome);
+    }
+
+    public List<Cliente> obterClientesAtivos() {
+        return clienteRepository.findByIsAtivoTrue();
+    }
+
+    public Cliente incluir(Cliente cliente) {
+                return clienteRepository.save(cliente);
     }
 
     public void excluir(Integer id) {
-        clienteMap.remove(id);
+        clienteRepository.deleteById(id);
+    }
+
+    public Endereco getEnderecoById(Integer id) {
+        var cliente = obterPorId(id);
+        return enderecoService.getAddressByCep(cliente.getCep());
     }
 }

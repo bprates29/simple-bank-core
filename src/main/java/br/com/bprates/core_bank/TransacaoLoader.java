@@ -40,13 +40,15 @@ public class TransacaoLoader implements ApplicationRunner {
                 Conta conta = contaService.obterPorId(Integer.valueOf(values[4]));
                 if (conta != null) {
                     transacao.setConta(conta);
+                    transacaoService.incluir(transacao);
+                    System.out.println(transacao);
+                } else {
+                    System.out.println("Conta com ID " + values[4] + " não encontrada. Transação ignorada.");
                 }
-
-                transacaoService.incluir(transacao);
-                System.out.println(transacao);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

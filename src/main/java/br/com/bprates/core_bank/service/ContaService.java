@@ -1,29 +1,39 @@
 package br.com.bprates.core_bank.service;
 
 import br.com.bprates.core_bank.model.domain.Conta;
+import br.com.bprates.core_bank.model.repository.ContaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ContaService {
-    private final Map<Integer, Conta> contaMap = new HashMap<>();
 
-    public void incluir(Conta conta) {
-        contaMap.put(conta.getId(), conta);
+    @Autowired
+    private ContaRepository contaRepository;
+
+    public Conta incluir(Conta conta) {
+        return contaRepository.save(conta);
     }
 
-    public Collection<Conta> obterLista() {
-        return contaMap.values();
+    public List<Conta> obterLista() {
+        return contaRepository.findAll();
     }
 
     public Conta obterPorId(Integer id) {
-        return contaMap.get(id);
+        return contaRepository.findById(id).orElse(null);
     }
 
     public void excluir(Integer id) {
-        contaMap.remove(id);
+        contaRepository.deleteById(id);
     }
 }
+
