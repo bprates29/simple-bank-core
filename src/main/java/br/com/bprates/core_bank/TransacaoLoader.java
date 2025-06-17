@@ -3,6 +3,7 @@ package br.com.bprates.core_bank;
 import br.com.bprates.core_bank.model.domain.Conta;
 import br.com.bprates.core_bank.model.domain.TipoTransacao;
 import br.com.bprates.core_bank.model.domain.Transacao;
+import br.com.bprates.core_bank.model.domain.TransacaoFactory;
 import br.com.bprates.core_bank.service.ContaService;
 import br.com.bprates.core_bank.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +32,14 @@ public class TransacaoLoader implements ApplicationRunner {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(";");
 
-                Transacao transacao = new Transacao();
-                transacao.setId(Integer.valueOf(values[0]));
-                transacao.setValor(Double.parseDouble(values[1]));
-                transacao.setDescricao(values[2]);
-                transacao.setTipo(TipoTransacao.valueOf(values[3].toUpperCase()));
+                Transacao transacao = TransacaoFactory.criarTransacao(
+                        Double.parseDouble(values[1]),
+                        values[2],
+                        TipoTransacao.valueOf(values[3].toUpperCase()),
+                        contaService.obterPorId(Integer.valueOf(values[4]))
+                );
 
-                Conta conta = contaService.obterPorId(Integer.valueOf(values[4]));
-                if (conta != null) {
-                    transacao.setConta(conta);
+                if (transacao.getConta() != null) {
                     transacaoService.incluir(transacao);
                     System.out.println(transacao);
                 } else {
